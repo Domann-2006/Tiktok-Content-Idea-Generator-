@@ -1,0 +1,19 @@
+{
+  "name": "tiktok-content-generator",
+  "version": "1.0.0",
+  "description": "AI-powered TikTok content idea generator",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["tiktok", "AI", "content generator", "groq"],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2"
+  }
+}
