@@ -17,8 +17,9 @@ app.use(express.static(__dirname));
 
 // Homepage route
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.resolve(__dirname, 'index.html'));
 });
+
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
 // TikTok idea generator API
@@ -62,7 +63,7 @@ app.post("/generate", async (req, res) => {
 
 // 404 route (catch-all)
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, '404.html'));
+  res.status(404).sendFile(path.resolve(__dirname, '404.html'));
 });
 
 // Use Render’s port
