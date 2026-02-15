@@ -2,13 +2,27 @@ import 'dotenv/config'; // if using ES Modules
 import express from "express";
 import fetch from "node-fetch";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Serve static files (HTML, CSS, JS)
+app.use(express.static(__dirname));
+
+// Homepage route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
+// TikTok idea generator API
 app.post("/generate", async (req, res) => {
   const { niche, style, count } = req.body;
 
@@ -47,4 +61,11 @@ app.post("/generate", async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+// 404 route (catch-all)
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, '404.html'));
+});
+
+// Use Render’s port
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
