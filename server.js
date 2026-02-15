@@ -19,7 +19,7 @@ app.use(express.static(__dirname));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
-
+console.log("GROQ_API_KEY =", GROQ_API_KEY);
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
 // TikTok idea generator API
