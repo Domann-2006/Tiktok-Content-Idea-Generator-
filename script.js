@@ -93,9 +93,10 @@ function showToast(message, duration = 3000) {
 // ====================================
 // Groq API Integration (Lightning Fast!)
 // ====================================
+
 async function generateIdeas(niche, style, count) {
     try {
-        const response = await fetch("http://localhost:3000/generate", {
+        const response = await fetch("/generate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -108,7 +109,6 @@ async function generateIdeas(niche, style, count) {
         }
 
         const data = await response.json();
-
         return data.choices[0].message.content;
 
     } catch (error) {
@@ -116,7 +116,6 @@ async function generateIdeas(niche, style, count) {
         throw error;
     }
 }
-
 // ====================================
 // Parse Ideas from API Response
 // ====================================
